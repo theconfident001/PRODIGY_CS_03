@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Complexity Checker - Prodigy Infotech</title>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #00ffff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .container {
+      background: #1a1a1a;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      padding: 30px;
+      width: 300px;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 15px;
+      background: #000;
+      color: #00ffff;
+      font-size: 16px;
+    }
+
+    .strength-bar {
+      height: 10px;
+      width: 100%;
+      margin: 10px 0;
+      background: #333;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .fill-weak {
+      background: red;
+      width: 25%;
+    }
+
+    .fill-medium {
+      background: orange;
+      width: 50%;
+    }
+
+    .fill-strong {
+      background: lime;
+      width: 100%;
+    }
+
+    #feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Comillas Negras</h1>
+  <div class="container">
+    <h2>Password Checker</h2>
+    <input type="password" id="password" placeholder="Enter Password" oninput="checkPasswordStrength()">
+    <div class="strength-bar" id="strengthBar"></div>
+    <div id="feedback"></div>
+  </div>
+
+  <script>
+    function checkPasswordStrength() {
+      const password = document.getElementById('password').value;
+      const strengthBar = document.getElementById('strengthBar');
+      const feedback = document.getElementById('feedback');
+
+      let strength = 0;
+      if (password.length >= 8) strength++;
+      if (/[a-z]/.test(password)) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+      if (strength <= 2) {
+        strengthBar.className = 'strength-bar fill-weak';
+        feedback.textContent = 'Weak Password';
+      } else if (strength === 3 || strength === 4) {
+        strengthBar.className = 'strength-bar fill-medium';
+        feedback.textContent = 'Moderate Password';
+      } else {
+        strengthBar.className = 'strength-bar fill-strong';
+        feedback.textContent = 'Strong Password';
+      }
+    }
+  </script>
+</body>
+
+</html>
