@@ -73,6 +73,7 @@ cd password-checker
 ## 🧑‍💻 Author
 
 **Radha**
+
 Built as part of a project for **Prodigy Infotech Internship**
 ---
 
